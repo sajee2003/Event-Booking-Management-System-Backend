@@ -17,10 +17,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DB\Entities\" />
-    <Folder Include="DTOs\ResponseModels\" />
-    <Folder Include="DTOs\RequestModels\" />
-  </ItemGroup>
-
 </Project>
