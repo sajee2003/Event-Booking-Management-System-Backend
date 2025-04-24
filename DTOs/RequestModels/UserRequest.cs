@@ -1,8 +1,7 @@
-﻿namespace EventBookingManagementSystem_Backend.DB.Entities
+﻿namespace EventBookingManagementSystem_Backend.DTOs.RequestModels
 {
-    public class User
+    public class UserRequest
     {
-        public Guid UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

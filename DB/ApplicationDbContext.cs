@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EventBookingManagementSystem_Backend.DB.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace EventBookingManagementSystem_Backend.DB
@@ -10,5 +11,7 @@ namespace EventBookingManagementSystem_Backend.DB
         {
 
         }
+        
+        public DbSet<User> Users { get; set; }
     }
 }
