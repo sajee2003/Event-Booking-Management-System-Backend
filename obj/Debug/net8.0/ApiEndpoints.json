@@ -111,6 +111,101 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.BookingController",
+    "Method": "AddBooking",
+    "RelativePath": "api/Booking/add-booking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "booking",
+        "Type": "EventBookingManagementSystem_Backend.DTOs.RequestModels.BookingRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.BookingController",
+    "Method": "DeleteBooking",
+    "RelativePath": "api/Booking/delete-booking/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.BookingController",
+    "Method": "GetBookings",
+    "RelativePath": "api/Booking/get-all-booking",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.BookingController",
+    "Method": "GetBookingById",
+    "RelativePath": "api/Booking/get-booking-by-id/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.BookingController",
+    "Method": "GetBookingsByUserId",
+    "RelativePath": "api/Booking/get-booking-by-user-id/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.BookingController",
+    "Method": "UpdateBooking",
+    "RelativePath": "api/Booking/update-booking",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "booking",
+        "Type": "EventBookingManagementSystem_Backend.DTOs.RequestModels.BookingRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EventBookingManagementSystem_Backend.Controllers.Package_ItemController",
     "Method": "AddPackageItem",
     "RelativePath": "api/Package_Item/add-package-item",
