@@ -5158,23 +5158,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kanes\\.nuget\\packages\\": {},
+    "C:\\Users\\kajal\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kanes\\OneDrive\\Desktop\\New folder (9)\\EventBookingManagementSystem-Backend\\EventBookingManagementSystem-Backend.csproj",
+      "projectUniqueName": "C:\\Users\\kajal\\OneDrive\\Desktop\\New folder\\New folder\\Event-Booking-Management-System-Backend\\EventBookingManagementSystem-Backend.csproj",
       "projectName": "EventBookingManagementSystem-Backend",
-      "projectPath": "C:\\Users\\kanes\\OneDrive\\Desktop\\New folder (9)\\EventBookingManagementSystem-Backend\\EventBookingManagementSystem-Backend.csproj",
-      "packagesPath": "C:\\Users\\kanes\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kanes\\OneDrive\\Desktop\\New folder (9)\\EventBookingManagementSystem-Backend\\obj\\",
+      "projectPath": "C:\\Users\\kajal\\OneDrive\\Desktop\\New folder\\New folder\\Event-Booking-Management-System-Backend\\EventBookingManagementSystem-Backend.csproj",
+      "packagesPath": "C:\\Users\\kajal\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kajal\\OneDrive\\Desktop\\New folder\\New folder\\Event-Booking-Management-System-Backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\kanes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kajal\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
