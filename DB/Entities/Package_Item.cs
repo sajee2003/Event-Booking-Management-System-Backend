@@ -13,5 +13,6 @@
         public Guid AssetId { get; set; }
         public Asset Asset { get; set; }
             
+
     }
 }

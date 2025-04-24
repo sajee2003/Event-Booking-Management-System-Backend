@@ -4,9 +4,9 @@ namespace EventBookingManagementSystem_Backend.DTOs.RequestModels
 {
     public class Booking_PackageRequest
     {
-        public int BookingId { get; set; }
+        public Guid BookingId { get; set; }
        
-        public int PackageId { get; set; }
+        public Guid PackageId { get; set; }
 
     }
 }
