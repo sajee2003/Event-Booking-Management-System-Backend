@@ -1,5 +1,9 @@
 
 using EventBookingManagementSystem_Backend.DB;
+using EventBookingManagementSystem_Backend.Repositories.Implementations;
+using EventBookingManagementSystem_Backend.Repositories.Interfaces;
+using EventBookingManagementSystem_Backend.Services.Implementations;
+using EventBookingManagementSystem_Backend.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -18,7 +22,10 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             var app = builder.Build();
 

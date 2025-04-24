@@ -1,6 +1,6 @@
-﻿namespace EventBookingManagementSystem_Backend.DB.Entities
+﻿namespace EventBookingManagementSystem_Backend.DTOs.ResponseModels
 {
-    public class User
+    public class UserResponse
     {
         public Guid UserId { get; set; }
         public string FirstName { get; set; }
