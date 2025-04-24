@@ -2,9 +2,7 @@
 {
     public class Booking
     {
-        public Guid BookingId { get; set; }
-        public int user_id { get; set; }
-
+        public Guid Id { get; set; }
         public DateOnly date { get; set; }
         
         public TimeOnly start_time { get; set; }
@@ -13,5 +11,8 @@
         public string status { get; set; }
         public decimal amount { get; set; }
 
+        //Navigation Properties
+        public Guid UserId { get; set; }
+        public User User { get; set; }
     }
 }

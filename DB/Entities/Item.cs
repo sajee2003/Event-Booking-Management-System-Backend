@@ -1,12 +1,15 @@
-﻿namespace EventBookingManagementSystem_Backend.DB.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EventBookingManagementSystem_Backend.DB.Entities
 {
     public class Item
     {
-        public int ItemId { get; set; }
+       
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string description { get; set; }
         
-        public int ItemCategoryId { get; set; }
-        public Item_Category item_Category { get; set; }
+        public Guid ItemCategoryId { get; set; }
+        public Item_Category ItemCategory { get; set; }
     }
 }

@@ -2,9 +2,9 @@
 {
     public class Invoice
     {
-        public Guid InvoiceId { get; set; }
-        public int BookingId { get; set; }
-
+        public Guid Id { get; set; }
+        public Guid BookingId { get; set; }
+        public Booking Booking { get; set; }
         public int Invoice_No { get; set; }
         public DateOnly date { get; set; }
         public DateOnly due_date { get; set; }

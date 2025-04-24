@@ -1,1 +1,113 @@
-[]
+[
+  {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.Package_ItemController",
+    "Method": "AddPackageItem",
+    "RelativePath": "api/Package_Item/add-package-item",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "package_Item",
+        "Type": "EventBookingManagementSystem_Backend.DTOs.RequestModels.Package_ItemRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.Package_ItemController",
+    "Method": "DeletePackageItem",
+    "RelativePath": "api/Package_Item/delete-package-item/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.Package_ItemController",
+    "Method": "GetAllPackageItems",
+    "RelativePath": "api/Package_Item/get-all-package-item",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.Package_ItemController",
+    "Method": "GetPackageItemsByAssetId",
+    "RelativePath": "api/Package_Item/get-package-item-by-assetId/{assetId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "assetId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.Package_ItemController",
+    "Method": "GetPackageItemsByItemId",
+    "RelativePath": "api/Package_Item/get-package-item-by-itemId/{itemId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "itemId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.Package_ItemController",
+    "Method": "GetPackageItemsByPackageId",
+    "RelativePath": "api/Package_Item/get-package-item-by-packageId/{packageId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "packageId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EventBookingManagementSystem_Backend.Controllers.Package_ItemController",
+    "Method": "UpdatePackageItem",
+    "RelativePath": "api/Package_Item/update-package-item",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "package_Item",
+        "Type": "EventBookingManagementSystem_Backend.DTOs.RequestModels.Package_ItemRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

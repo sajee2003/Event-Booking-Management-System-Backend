@@ -1,6 +1,6 @@
 ﻿namespace EventBookingManagementSystem_Backend.Repositories.Interfaces
 {
-    public interface ISampleRepository
+    public interface IBooking_PackageRepository
     {
     }
 }
