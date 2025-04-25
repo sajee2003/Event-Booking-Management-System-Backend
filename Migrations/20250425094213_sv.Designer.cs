@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventBookingManagementSystem_Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250425084432_sda")]
-    partial class sda
+    [Migration("20250425094213_sv")]
+    partial class sv
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -190,7 +190,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasIndex("ItemCategoryId");
 
-                    b.ToTable("Item");
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Item_Category", b =>
@@ -209,7 +209,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Item_Category");
+                    b.ToTable("Item_Categories");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Item_Price", b =>

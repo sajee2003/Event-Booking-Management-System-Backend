@@ -9,6 +9,7 @@ using EventBookingManagementSystem_Backend.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Text.Json.Serialization;
 
 namespace EventBookingManagementSystem_Backend
 {
@@ -78,6 +79,28 @@ namespace EventBookingManagementSystem_Backend
 
             app.UseMiddleware<CustomExceptionMiddleware>();
 
+
+            builder.Services.AddScoped<IItemRepository, ItemRepository>();
+            builder.Services.AddScoped<IItemService, ItemService>();
+
+            builder.Services.AddScoped<IItemCategoryRepository, ItemCategoryRepository>();
+            builder.Services.AddScoped<IItemCategoryService, ItemCategoryService>();
+
+
+            builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
+            builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+          
+            builder.Services.AddControllers()
+.AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+});
+
+
+
+
+            var app = builder.Build();
+            
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

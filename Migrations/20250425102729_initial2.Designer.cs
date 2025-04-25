@@ -4,6 +4,7 @@ using EventBookingManagementSystem_Backend.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventBookingManagementSystem_Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250425102729_initial2")]
+    partial class initial2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,7 +124,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasIndex("BookingId");
 
-                    b.ToTable("Booking_Assets");
+                    b.ToTable("Booking_Asset");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Booking_Package", b =>
@@ -218,7 +221,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasIndex("ItemCategoryId");
 
-                    b.ToTable("Items");
+                    b.ToTable("Item");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Item_Category", b =>
@@ -237,7 +240,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Item_Categories");
+                    b.ToTable("Item_Category");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Item_Price", b =>
