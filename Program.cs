@@ -38,6 +38,7 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddScoped<IBooking_PackageService, Booking_PackageService>();
             builder.Services.AddScoped<IPackageRepository, PackageRepository>();
             builder.Services.AddScoped<IPackageService, PackageService>();
+
             builder.Services.AddScoped<IItemRepository, ItemRepository>();
             builder.Services.AddScoped<IItemService, ItemService>();
 
@@ -45,11 +46,16 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddScoped<IItemCategoryService, ItemCategoryService>();
 
 
+            builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
+            builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+          
             builder.Services.AddControllers()
 .AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
 });
+
+
 
 
             var app = builder.Build();
