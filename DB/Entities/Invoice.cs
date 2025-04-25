@@ -2,7 +2,7 @@
 {
     public class Invoice
     {
-        public Guid InvoiceId { get; set; }
+        public Guid Id { get; set; }
         public int BookingId { get; set; }
 
         public int Invoice_No { get; set; }
