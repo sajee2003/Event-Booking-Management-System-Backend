@@ -163,7 +163,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("Booking_Package_Item");
+                    b.ToTable("Booking_Package_Items");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Invoice", b =>
@@ -249,6 +249,12 @@ namespace EventBookingManagementSystem_Backend.Migrations
                     b.Property<Guid>("ItemId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("ValidFrom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ValidTo")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("assetId")
                         .HasColumnType("uniqueidentifier");
 
@@ -258,6 +264,9 @@ namespace EventBookingManagementSystem_Backend.Migrations
                     b.Property<string>("currency")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("price_type")
                         .IsRequired()
@@ -269,7 +278,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasIndex("assetId");
 
-                    b.ToTable("Item_Price");
+                    b.ToTable("ItemPrices");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Package", b =>

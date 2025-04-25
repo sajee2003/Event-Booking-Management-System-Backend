@@ -57,7 +57,7 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddScoped<IBookingRepository, BookingRepository>();
             builder.Services.AddScoped<IBooking_PackageRepository, Booking_PackageRepository>();
 
-            builder.Services.AddScoped<IBookingAssetRepository, BookingAssetRepository>();
+            
            
 
             //add-scoped-services               
@@ -68,16 +68,9 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddScoped<IPackageRepository, PackageRepository>();
             builder.Services.AddScoped<IPackageService, PackageService>();
 
+            builder.Services.AddScoped<IBookingAssetRepository, BookingAssetRepository>();
             builder.Services.AddScoped<IBookingAssetService, BookingAssetService>();
 
-
-
-            builder.Services.AddAutoMapper(typeof(BookingAssetProfile));
-            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-            var app = builder.Build();
-
-            app.UseMiddleware<CustomExceptionMiddleware>();
 
 
             builder.Services.AddScoped<IItemRepository, ItemRepository>();
@@ -86,10 +79,15 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddScoped<IItemCategoryRepository, ItemCategoryRepository>();
             builder.Services.AddScoped<IItemCategoryService, ItemCategoryService>();
 
-
             builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             builder.Services.AddScoped<IInvoiceService, InvoiceService>();
-          
+
+            builder.Services.AddScoped<IBookingPackageItemRepository,BookingPackageItemRepository >();
+            builder.Services.AddScoped<IBookingPackageItemService,BookingPackageItemService>();
+
+            builder.Services.AddAutoMapper(typeof(BookingAssetProfile));
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             builder.Services.AddControllers()
 .AddJsonOptions(options =>
 {
@@ -100,7 +98,8 @@ namespace EventBookingManagementSystem_Backend
 
 
             var app = builder.Build();
-            
+            app.UseMiddleware<CustomExceptionMiddleware>();
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

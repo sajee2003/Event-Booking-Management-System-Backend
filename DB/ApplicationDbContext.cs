@@ -20,9 +20,6 @@ namespace EventBookingManagementSystem_Backend.DB
         public DbSet<Package> Packages { get; set; }
         public DbSet<Booking_Asset> Booking_Assets { get; set; }
 
-
-=
-        public DbSet<Package> Packages { get; set; }
         public DbSet<Item_Price> ItemPrices { get; set; }
 
         public DbSet<Invoice> Invoices { get; set; }
@@ -30,7 +27,7 @@ namespace EventBookingManagementSystem_Backend.DB
         public DbSet<Item_Category> Item_Categories { get; set; }
         public DbSet<Item> Items { get; set; }
 
-        public DbSet<Booking_Package_Item> Booking_Package_Item { get; set; }
+        public DbSet<Booking_Package_Item> Booking_Package_Items { get; set; }
 
 
 

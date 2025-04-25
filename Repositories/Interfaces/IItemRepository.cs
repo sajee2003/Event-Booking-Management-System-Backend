@@ -10,5 +10,6 @@ namespace EventBookingManagementSystem_Backend.Repositories.Interfaces
         Task<Item> AddAsync(Item item);
         Task<Item> UpdateAsync(Item item);
         Task<bool> DeleteAsync(Item item);
+        Task<bool> ExistsAsync(Guid id);
     }
 }

@@ -83,5 +83,9 @@ namespace EventBookingManagementSystem_Backend.Repositories.Implementations
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> ExistsAsync(Guid id) {
+            return await _context.Items.AnyAsync(i => i.Id == id);
+        }
     }
 }
