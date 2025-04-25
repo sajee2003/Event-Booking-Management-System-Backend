@@ -7,7 +7,7 @@
         public Booking Booking { get; set; }
 
         public Guid PackageId { get; set; }
-
+        //jlbg
         public Package Package { get; set; }
     }
 }
