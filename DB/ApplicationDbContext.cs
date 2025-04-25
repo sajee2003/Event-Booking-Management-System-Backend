@@ -18,8 +18,8 @@ namespace EventBookingManagementSystem_Backend.DB
         public DbSet<Package_Item> Package_Items { get; set; }
         public DbSet<Booking_Package> Booking_Packages { get; set; }
 
-
         public DbSet<Package> Packages { get; set; }
+        public DbSet<Item_Price> ItemPrices { get; set; }
 
     }
 }
