@@ -29,6 +29,8 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddScoped<IPackage_ItemRepository, Package_ItemRepository>();
             builder.Services.AddScoped<IBookingRepository, BookingRepository>();
             builder.Services.AddScoped<IBooking_PackageRepository, Booking_PackageRepository>();
+            builder.Services.AddScoped<IAssetRepository, AssetRepository>();
+            builder.Services.AddScoped<IItem_PriceRepository, ItemPriceRepository>();
 
             //add-scoped-services               
             builder.Services.AddScoped<IUserService, UserService>();
@@ -37,6 +39,9 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddScoped<IBooking_PackageService, Booking_PackageService>();
             builder.Services.AddScoped<IPackageRepository, PackageRepository>();
             builder.Services.AddScoped<IPackageService, PackageService>();
+            builder.Services.AddScoped<IAssetService, AssetService>();
+            builder.Services.AddScoped<IItem_PriceService, Item_PriceService>();
+
 
             var app = builder.Build();
 
