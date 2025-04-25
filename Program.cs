@@ -35,6 +35,10 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddScoped<IPackage_ItemService, Package_ItemService>();
             builder.Services.AddScoped<IBookingService, BookingService>();
             builder.Services.AddScoped<IBooking_PackageService, Booking_PackageService>();
+            builder.Services.AddScoped<IPackageRepository, PackageRepository>();
+            builder.Services.AddScoped<IPackageService, PackageService>();
+            builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
+            builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 
             var app = builder.Build();
 

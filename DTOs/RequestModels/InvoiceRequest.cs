@@ -1,14 +1,10 @@
 ﻿using EventBookingManagementSystem_Backend.Assests.Enums;
 
-namespace EventBookingManagementSystem_Backend.DB.Entities
+namespace EventBookingManagementSystem_Backend.DTOs.RequestModels
 {
-    public class Invoice
+    public class InvoiceRequest
     {
-        public Guid Id { get; set; }
         public Guid BookingId { get; set; }
-
-
-        public Booking Booking { get; set; }
 
         public int Invoice_No { get; set; }
         public DateOnly date { get; set; }
@@ -16,8 +12,5 @@ namespace EventBookingManagementSystem_Backend.DB.Entities
         public decimal total_amount { get; set; }
 
         public InvoiceStatus Status { get; set; }
-
-   
-
     }
 }

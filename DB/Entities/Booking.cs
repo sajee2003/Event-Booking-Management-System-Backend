@@ -2,9 +2,10 @@
 {
     public class Booking
     {
-        public Guid BookingId { get; set; }
-        public Guid user_id { get; set; }
 
+        public Guid Id { get; set; }
+        public Guid userId { get; set; }
+        public User user { get; set; }
         public DateOnly date { get; set; }
         
         public TimeOnly start_time { get; set; }
@@ -12,6 +13,11 @@
 
         public string status { get; set; }
         public decimal amount { get; set; }
+
+
+        public ICollection<Invoice> Invoices { get; set; }
+
+
 
     }
 }
