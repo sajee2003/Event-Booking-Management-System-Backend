@@ -8,7 +8,7 @@
 
 
         public Guid ItemCategoryId { get; set; }
-        public Item_Category item_Category { get; set; }
+        public Item_Category ItemCategory { get; set; }
 
 
 

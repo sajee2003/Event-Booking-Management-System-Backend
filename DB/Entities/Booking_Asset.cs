@@ -4,11 +4,11 @@
     {
         public Guid Id { get; set; }
 
-        public int BookingId { get; set; }
-        public Booking booking { get; set; }
-        public int AssetId { get; set; }
+        public Guid BookingId { get; set; }
+        public Booking Booking { get; set; }
+        public Guid AssetId { get; set; }
 
-        public Asset asset { get; set; }
+        public Asset Asset { get; set; }
 
         public TimeOnly start_time { get; set; }
         public TimeOnly end_time { get; set; }

@@ -8,10 +8,10 @@ namespace EventBookingManagementSystem_Backend.DB.Entities
         
         public Guid Id { get; set; }
         public Guid AssetId { get; set; }
-        public Asset asset { get; set; }
+        public Asset Asset { get; set; }
 
         public Guid ItemId { get; set; }
-        public Item item { get; set; }
+        public Item Item { get; set; }
 
     }
 }

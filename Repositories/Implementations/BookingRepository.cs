@@ -29,7 +29,7 @@ namespace EventBookingManagementSystem_Backend.Repositories.Implementations
         //get booking by user id
         public async Task<List<Booking>> GetBookingsByUserId(Guid userId)
         {
-            return await applicationDbContext.Bookings.Where(x => x.UserId == userId).ToListAsync();
+            return await applicationDbContext.Bookings.Where(x => x.Id == userId).ToListAsync();
         }
 
         // add booking

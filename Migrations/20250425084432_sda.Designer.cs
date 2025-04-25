@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventBookingManagementSystem_Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250425062207_initial4")]
-    partial class initial4
+    [Migration("20250425084432_sda")]
+    partial class sda
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,12 +90,14 @@ namespace EventBookingManagementSystem_Backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("user_id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("userId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Booking");
+                    b.HasIndex("userId");
+
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Booking_Asset", b =>
@@ -104,16 +106,10 @@ namespace EventBookingManagementSystem_Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AssetId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BookingId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("assetId")
+                    b.Property<Guid>("AssetId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("bookingId")
+                    b.Property<Guid>("BookingId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<TimeOnly>("end_time")
@@ -124,9 +120,9 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("assetId");
+                    b.HasIndex("AssetId");
 
-                    b.HasIndex("bookingId");
+                    b.HasIndex("BookingId");
 
                     b.ToTable("Booking_Asset");
                 });
@@ -137,25 +133,19 @@ namespace EventBookingManagementSystem_Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("BookingId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("BookingId1")
+                    b.Property<Guid>("BookingId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("PackageId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("packageId")
+                    b.Property<Guid>("PackageId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookingId1");
+                    b.HasIndex("BookingId");
 
-                    b.HasIndex("packageId");
+                    b.HasIndex("PackageId");
 
-                    b.ToTable("Booking_Package");
+                    b.ToTable("Booking_Packages");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Booking_Package_Item", b =>
@@ -164,23 +154,17 @@ namespace EventBookingManagementSystem_Backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("BookingPackageId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("booking_packageId")
+                    b.Property<Guid>("BookingPackageId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("itemId")
+                    b.Property<Guid>("ItemId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("booking_packageId");
+                    b.HasIndex("BookingPackageId");
 
-                    b.HasIndex("itemId");
+                    b.HasIndex("ItemId");
 
                     b.ToTable("Booking_Package_Item");
                 });
@@ -202,12 +186,9 @@ namespace EventBookingManagementSystem_Backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("item_CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("item_CategoryId");
+                    b.HasIndex("ItemCategoryId");
 
                     b.ToTable("Item");
                 });
@@ -241,9 +222,6 @@ namespace EventBookingManagementSystem_Backend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("assetId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("asset_id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("base_price")
@@ -303,9 +281,6 @@ namespace EventBookingManagementSystem_Backend.Migrations
                     b.Property<Guid>("PackageId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("item")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AssetId");
@@ -314,7 +289,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasIndex("PackageId");
 
-                    b.ToTable("Package_Item");
+                    b.ToTable("Package_Items");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.User", b =>
@@ -350,94 +325,105 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Asset_Item", b =>
                 {
-                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Asset", "asset")
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Asset", "Asset")
                         .WithMany("Asset_Items")
                         .HasForeignKey("AssetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Item", "item")
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Item", "Item")
                         .WithMany("Asset_Items")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("asset");
+                    b.Navigation("Asset");
 
-                    b.Navigation("item");
+                    b.Navigation("Item");
+                });
+
+            modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Booking", b =>
+                {
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.User", "user")
+                        .WithMany()
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Booking_Asset", b =>
                 {
-                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Asset", "asset")
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Asset", "Asset")
                         .WithMany("Booking_Assets")
-                        .HasForeignKey("assetId")
+                        .HasForeignKey("AssetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Booking", "booking")
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Booking", "Booking")
                         .WithMany()
-                        .HasForeignKey("bookingId")
+                        .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("asset");
+                    b.Navigation("Asset");
 
-                    b.Navigation("booking");
+                    b.Navigation("Booking");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Booking_Package", b =>
                 {
                     b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Booking", "Booking")
                         .WithMany()
-                        .HasForeignKey("BookingId1")
+                        .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Package", "package")
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Package", "Package")
                         .WithMany()
-                        .HasForeignKey("packageId")
+                        .HasForeignKey("PackageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Booking");
 
-                    b.Navigation("package");
+                    b.Navigation("Package");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Booking_Package_Item", b =>
                 {
-                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Booking_Package", "booking_package")
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Booking_Package", "BookingPackage")
                         .WithMany()
-                        .HasForeignKey("booking_packageId")
+                        .HasForeignKey("BookingPackageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Item", "item")
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Item", "Item")
                         .WithMany("Booking_Package_Items")
-                        .HasForeignKey("itemId")
+                        .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("booking_package");
+                    b.Navigation("BookingPackage");
 
-                    b.Navigation("item");
+                    b.Navigation("Item");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Item", b =>
                 {
-                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Item_Category", "item_Category")
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Item_Category", "ItemCategory")
                         .WithMany("Items")
-                        .HasForeignKey("item_CategoryId")
+                        .HasForeignKey("ItemCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("item_Category");
+                    b.Navigation("ItemCategory");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Item_Price", b =>
                 {
-                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Item", "item")
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Item", "Item")
                         .WithMany("Item_Prices")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -449,34 +435,36 @@ namespace EventBookingManagementSystem_Backend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("asset");
+                    b.Navigation("Item");
 
-                    b.Navigation("item");
+                    b.Navigation("asset");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Package_Item", b =>
                 {
-                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Asset", "asset")
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Asset", "Asset")
                         .WithMany("Package_Items")
                         .HasForeignKey("AssetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Item", null)
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Item", "Item")
                         .WithMany("Package_Items")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Package", "package")
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Package", "Package")
                         .WithMany("Package_Items")
                         .HasForeignKey("PackageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("asset");
+                    b.Navigation("Asset");
 
-                    b.Navigation("package");
+                    b.Navigation("Item");
+
+                    b.Navigation("Package");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Asset", b =>

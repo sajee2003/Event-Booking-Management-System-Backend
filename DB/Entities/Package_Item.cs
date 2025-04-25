@@ -10,14 +10,14 @@
 
 
         public Guid PackageId { get; set; }
-        public Package package { get; set; }
+        public Package Package { get; set; }
 
         public Guid ItemId { get; set; }
 
-        public Item item { get; set; }
+        public Item Item { get; set; }
 
         public Guid AssetId { get; set; }
-        public Asset asset { get; set; }
+        public Asset Asset { get; set; }
 
     }
 }
