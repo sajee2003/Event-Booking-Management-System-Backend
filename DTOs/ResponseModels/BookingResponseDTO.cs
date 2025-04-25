@@ -1,8 +1,10 @@
-﻿namespace EventBookingManagementSystem_Backend.DB.Entities
+﻿using EventBookingManagementSystem_Backend.DB.Entities;
+
+namespace EventBookingManagementSystem_Backend.DTOs.ResponseModels
 {
-    public class Booking
+    public class BookingResponseDTO
     {
-        public Guid Id { get; set; }
+        public Guid BookingId { get; set; }
         public DateOnly date { get; set; }
 
         public TimeOnly start_time { get; set; }
@@ -11,8 +13,7 @@
         public string status { get; set; }
         public decimal amount { get; set; }
 
-        //Navigation Properties
         public Guid UserId { get; set; }
-        public User User { get; set; }
+        
     }
 }
