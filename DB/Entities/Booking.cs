@@ -2,7 +2,8 @@
 {
     public class Booking
     {
-        public Guid BookingId { get; set; }
+
+    public Guid Id { get; set; }
         public Guid user_id { get; set; }
 
         public DateOnly date { get; set; }

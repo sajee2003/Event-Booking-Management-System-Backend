@@ -2,7 +2,7 @@
 {
     public class Booking_Asset
     {
-        public Guid BookingAssetId { get; set; }
+        public Guid Id { get; set; }
 
         public int BookingId { get; set; }
         public Booking booking { get; set; }
