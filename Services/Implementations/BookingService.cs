@@ -32,7 +32,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
                 end_time = x.end_time,
                 status = x.status,
                 amount = x.amount,
-                UserId = x.UserId
+                UserId = x.Id
             }).ToList();
         }
 
@@ -52,7 +52,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
                 end_time = data.end_time,
                 status = data.status,
                 amount = data.amount,
-                UserId = data.UserId
+                UserId = data.Id
             };
         }
 
@@ -72,7 +72,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
                 end_time = x.end_time,
                 status = x.status,
                 amount = x.amount,
-                UserId = x.UserId
+                UserId = x.Id
             }).ToList();
         }
 
@@ -87,7 +87,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
                 end_time = booking.end_time,
                 status = booking.status,
                 amount = booking.amount,
-                UserId = booking.UserId
+                userId = booking.UserId
             };
             var result = await _bookingRepository.AddBooking(data);
             if (result == null)
@@ -102,7 +102,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
                 end_time = result.end_time,
                 status = result.status,
                 amount = result.amount,
-                UserId = result.UserId
+                UserId = result.Id
             };
         }
 
@@ -119,7 +119,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
             data.end_time = booking.end_time;
             data.status = booking.status;
             data.amount = booking.amount;
-            data.UserId = booking.UserId;
+            data.Id = booking.UserId;
 
             var result = await _bookingRepository.UpdateBooking(data);
             if (result == null)
@@ -134,7 +134,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
                 end_time = result.end_time,
                 status = result.status,
                 amount = result.amount,
-                UserId = result.UserId
+                UserId = result.Id
             };
 
         }

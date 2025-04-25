@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EventBookingManagementSystem_Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class initial4 : Migration
+    public partial class sda : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,23 +23,6 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Asset", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Booking",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    user_id = table.Column<int>(type: "int", nullable: false),
-                    date = table.Column<DateOnly>(type: "date", nullable: false),
-                    start_time = table.Column<TimeOnly>(type: "time", nullable: false),
-                    end_time = table.Column<TimeOnly>(type: "time", nullable: false),
-                    status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Booking", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -70,32 +53,19 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Booking_Asset",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BookingId = table.Column<int>(type: "int", nullable: false),
-                    bookingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AssetId = table.Column<int>(type: "int", nullable: false),
-                    assetId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    start_time = table.Column<TimeOnly>(type: "time", nullable: false),
-                    end_time = table.Column<TimeOnly>(type: "time", nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Booking_Asset", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Booking_Asset_Asset_assetId",
-                        column: x => x.assetId,
-                        principalTable: "Asset",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Booking_Asset_Booking_bookingId",
-                        column: x => x.bookingId,
-                        principalTable: "Booking",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -105,43 +75,38 @@ namespace EventBookingManagementSystem_Backend.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ItemCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    item_CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ItemCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Item", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Item_Item_Category_item_CategoryId",
-                        column: x => x.item_CategoryId,
+                        name: "FK_Item_Item_Category_ItemCategoryId",
+                        column: x => x.ItemCategoryId,
                         principalTable: "Item_Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Booking_Package",
+                name: "Bookings",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BookingId = table.Column<int>(type: "int", nullable: false),
-                    BookingId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PackageId = table.Column<int>(type: "int", nullable: false),
-                    packageId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    userId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    date = table.Column<DateOnly>(type: "date", nullable: false),
+                    start_time = table.Column<TimeOnly>(type: "time", nullable: false),
+                    end_time = table.Column<TimeOnly>(type: "time", nullable: false),
+                    status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Booking_Package", x => x.Id);
+                    table.PrimaryKey("PK_Bookings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Booking_Package_Booking_BookingId1",
-                        column: x => x.BookingId1,
-                        principalTable: "Booking",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Booking_Package_Packages_packageId",
-                        column: x => x.packageId,
-                        principalTable: "Packages",
+                        name: "FK_Bookings_Users_userId",
+                        column: x => x.userId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -179,7 +144,6 @@ namespace EventBookingManagementSystem_Backend.Migrations
                     ItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     base_price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    asset_id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     assetId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     price_type = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -201,32 +165,83 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Package_Item",
+                name: "Package_Items",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PackageId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    item = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AssetId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Package_Item", x => x.Id);
+                    table.PrimaryKey("PK_Package_Items", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Package_Item_Asset_AssetId",
+                        name: "FK_Package_Items_Asset_AssetId",
                         column: x => x.AssetId,
                         principalTable: "Asset",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Package_Item_Item_ItemId",
+                        name: "FK_Package_Items_Item_ItemId",
                         column: x => x.ItemId,
                         principalTable: "Item",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Package_Item_Packages_PackageId",
+                        name: "FK_Package_Items_Packages_PackageId",
+                        column: x => x.PackageId,
+                        principalTable: "Packages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Booking_Asset",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BookingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AssetId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    start_time = table.Column<TimeOnly>(type: "time", nullable: false),
+                    end_time = table.Column<TimeOnly>(type: "time", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Booking_Asset", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Booking_Asset_Asset_AssetId",
+                        column: x => x.AssetId,
+                        principalTable: "Asset",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Booking_Asset_Bookings_BookingId",
+                        column: x => x.BookingId,
+                        principalTable: "Bookings",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Booking_Packages",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BookingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PackageId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Booking_Packages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Booking_Packages_Bookings_BookingId",
+                        column: x => x.BookingId,
+                        principalTable: "Bookings",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Booking_Packages_Packages_PackageId",
                         column: x => x.PackageId,
                         principalTable: "Packages",
                         principalColumn: "Id",
@@ -238,23 +253,21 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BookingPackageId = table.Column<int>(type: "int", nullable: false),
-                    booking_packageId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ItemId = table.Column<int>(type: "int", nullable: false),
-                    itemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    BookingPackageId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Booking_Package_Item", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Booking_Package_Item_Booking_Package_booking_packageId",
-                        column: x => x.booking_packageId,
-                        principalTable: "Booking_Package",
+                        name: "FK_Booking_Package_Item_Booking_Packages_BookingPackageId",
+                        column: x => x.BookingPackageId,
+                        principalTable: "Booking_Packages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Booking_Package_Item_Item_itemId",
-                        column: x => x.itemId,
+                        name: "FK_Booking_Package_Item_Item_ItemId",
+                        column: x => x.ItemId,
                         principalTable: "Item",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -271,39 +284,44 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 column: "ItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Booking_Asset_assetId",
+                name: "IX_Booking_Asset_AssetId",
                 table: "Booking_Asset",
-                column: "assetId");
+                column: "AssetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Booking_Asset_bookingId",
+                name: "IX_Booking_Asset_BookingId",
                 table: "Booking_Asset",
-                column: "bookingId");
+                column: "BookingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Booking_Package_BookingId1",
-                table: "Booking_Package",
-                column: "BookingId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Booking_Package_packageId",
-                table: "Booking_Package",
-                column: "packageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Booking_Package_Item_booking_packageId",
+                name: "IX_Booking_Package_Item_BookingPackageId",
                 table: "Booking_Package_Item",
-                column: "booking_packageId");
+                column: "BookingPackageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Booking_Package_Item_itemId",
+                name: "IX_Booking_Package_Item_ItemId",
                 table: "Booking_Package_Item",
-                column: "itemId");
+                column: "ItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Item_item_CategoryId",
+                name: "IX_Booking_Packages_BookingId",
+                table: "Booking_Packages",
+                column: "BookingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Booking_Packages_PackageId",
+                table: "Booking_Packages",
+                column: "PackageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookings_userId",
+                table: "Bookings",
+                column: "userId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Item_ItemCategoryId",
                 table: "Item",
-                column: "item_CategoryId");
+                column: "ItemCategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Item_Price_assetId",
@@ -316,18 +334,18 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 column: "ItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Package_Item_AssetId",
-                table: "Package_Item",
+                name: "IX_Package_Items_AssetId",
+                table: "Package_Items",
                 column: "AssetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Package_Item_ItemId",
-                table: "Package_Item",
+                name: "IX_Package_Items_ItemId",
+                table: "Package_Items",
                 column: "ItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Package_Item_PackageId",
-                table: "Package_Item",
+                name: "IX_Package_Items_PackageId",
+                table: "Package_Items",
                 column: "PackageId");
         }
 
@@ -347,10 +365,10 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 name: "Item_Price");
 
             migrationBuilder.DropTable(
-                name: "Package_Item");
+                name: "Package_Items");
 
             migrationBuilder.DropTable(
-                name: "Booking_Package");
+                name: "Booking_Packages");
 
             migrationBuilder.DropTable(
                 name: "Asset");
@@ -359,13 +377,16 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 name: "Item");
 
             migrationBuilder.DropTable(
-                name: "Booking");
+                name: "Bookings");
 
             migrationBuilder.DropTable(
                 name: "Packages");
 
             migrationBuilder.DropTable(
                 name: "Item_Category");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

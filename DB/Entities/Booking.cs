@@ -3,9 +3,9 @@
     public class Booking
     {
 
-    public Guid Id { get; set; }
-        public Guid user_id { get; set; }
-
+        public Guid Id { get; set; }
+        public Guid userId { get; set; }
+        public User user { get; set; }
         public DateOnly date { get; set; }
         
         public TimeOnly start_time { get; set; }
