@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EventBookingManagementSystem_Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class sda : Migration
+    public partial class initial2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -249,6 +249,29 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Invoices",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BookingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Invoice_No = table.Column<int>(type: "int", nullable: false),
+                    date = table.Column<DateOnly>(type: "date", nullable: false),
+                    due_date = table.Column<DateOnly>(type: "date", nullable: false),
+                    total_amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Invoices", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Invoices_Bookings_BookingId",
+                        column: x => x.BookingId,
+                        principalTable: "Bookings",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Booking_Package_Item",
                 columns: table => new
                 {
@@ -319,6 +342,11 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 column: "userId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Invoices_BookingId",
+                table: "Invoices",
+                column: "BookingId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Item_ItemCategoryId",
                 table: "Item",
                 column: "ItemCategoryId");
@@ -360,6 +388,9 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
             migrationBuilder.DropTable(
                 name: "Booking_Package_Item");
+
+            migrationBuilder.DropTable(
+                name: "Invoices");
 
             migrationBuilder.DropTable(
                 name: "Item_Price");
