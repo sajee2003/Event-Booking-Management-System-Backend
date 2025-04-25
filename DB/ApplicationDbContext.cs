@@ -14,6 +14,12 @@ namespace EventBookingManagementSystem_Backend.DB
         
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Package_Item> Package_Items { get; set; }
+        public DbSet<Booking_Package> Booking_Packages { get; set; }
+
+
         public DbSet<Package> Packages { get; set; }
+
     }
 }
