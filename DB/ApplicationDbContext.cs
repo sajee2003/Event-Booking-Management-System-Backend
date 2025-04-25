@@ -21,5 +21,7 @@ namespace EventBookingManagementSystem_Backend.DB
 
         public DbSet<Package> Packages { get; set; }
 
+        public DbSet<Invoice> Invoices { get; set; }
+
     }
 }
