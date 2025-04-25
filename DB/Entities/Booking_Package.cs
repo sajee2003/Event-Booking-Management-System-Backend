@@ -2,7 +2,7 @@
 {
     public class Booking_Package
     {
-        public Guid BookingPackageId { get; set; }
+        public Guid Id { get; set; }
         public int BookingId { get; set; }
         public Booking Booking { get; set; }
 

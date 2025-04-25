@@ -2,16 +2,16 @@
 {
     public class Package_Item
     {
-        public Guid PackageItemId { get; set; }
-        
-        public int PackageId { get; set; }
+        public Guid Id { get; set; }
+
+        public Guid PackageId { get; set; }
         public Package package { get; set; }
 
-        public int ItemId { get; set; }
-        public Item item { get; set; }
+        public Guid ItemId { get; set; }
+        public Guid item { get; set; }
 
-        public int AssetId { get; set; }
+        public Guid AssetId { get; set; }
         public Asset asset { get; set; }
-            
+
     }
 }
