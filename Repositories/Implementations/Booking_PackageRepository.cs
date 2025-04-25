@@ -21,7 +21,7 @@ namespace EventBookingManagementSystem_Backend.Repositories.Implementations
         }
 
         // get booking_package by id
-        public async Task<Booking_Package> GetBooking_PackageById(int id)
+        public async Task<Booking_Package> GetBooking_PackageById(Guid id)
         {
             return await applicationDbContext.Booking_Packages.FindAsync(id);
         }
@@ -61,7 +61,7 @@ namespace EventBookingManagementSystem_Backend.Repositories.Implementations
         }
 
         // delete booking_package
-        public async Task<bool> DeleteBooking_Package(int id)
+        public async Task<bool> DeleteBooking_Package(Guid id)
         {
             var booking_package = await applicationDbContext.Booking_Packages.FindAsync(id);
             if (booking_package == null)

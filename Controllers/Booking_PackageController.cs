@@ -33,7 +33,7 @@ namespace EventBookingManagementSystem_Backend.Controllers
 
         // get booking_package by id
         [HttpGet("get-booking-package-by-id/{id}")]
-        public async Task<IActionResult> GetBooking_PackageById(int id)
+        public async Task<IActionResult> GetBooking_PackageById(Guid id)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace EventBookingManagementSystem_Backend.Controllers
 
         // update booking_package
         [HttpPut("update-booking-package/{id}")]
-        public async Task<IActionResult> UpdateBooking_Package(int id, Booking_PackageRequest booking_packageRequest)
+        public async Task<IActionResult> UpdateBooking_Package(Guid id, Booking_PackageRequest booking_packageRequest)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace EventBookingManagementSystem_Backend.Controllers
 
         // delete booking_package
         [HttpDelete("delete-booking-package/{id}")]
-        public async Task<IActionResult> DeleteBooking_Package(int id)
+        public async Task<IActionResult> DeleteBooking_Package(Guid id)
         {
             try
             {

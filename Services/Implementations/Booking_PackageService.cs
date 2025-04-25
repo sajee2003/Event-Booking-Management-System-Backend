@@ -30,7 +30,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
         }
 
         // get booking_package by id
-        public async Task<Booking_PackageResponse> GetBooking_PackageById(int id)
+        public async Task<Booking_PackageResponse> GetBooking_PackageById(Guid id)
         {
             var data = await booking_PackageRepository.GetBooking_PackageById(id);
             if (data == null)
@@ -84,7 +84,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
         }
 
         // update booking_package
-        public async Task<Booking_PackageResponse> UpdateBooking_Package(int id, Booking_PackageRequest booking_PackageRequest)
+        public async Task<Booking_PackageResponse> UpdateBooking_Package(Guid id, Booking_PackageRequest booking_PackageRequest)
         {
             var booking_package = await booking_PackageRepository.GetBooking_PackageById(id);
             if (booking_package == null)
@@ -102,7 +102,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
         }
 
         // delete booking_package
-        public async Task<bool> DeleteBooking_Package(int id)
+        public async Task<bool> DeleteBooking_Package(Guid id)
         {
             var booking_package = await booking_PackageRepository.GetBooking_PackageById(id);
             if (booking_package == null)
