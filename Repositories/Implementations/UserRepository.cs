@@ -40,7 +40,7 @@ namespace EventBookingManagementSystem_Backend.Repositories.Implementations
             return user;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null) return false;

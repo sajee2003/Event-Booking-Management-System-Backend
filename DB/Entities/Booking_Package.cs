@@ -2,12 +2,12 @@
 {
     public class Booking_Package
     {
-        public Guid BookingPackageId { get; set; }
-        public int BookingId { get; set; }
+        public Guid Id { get; set; }
+        public Guid BookingId { get; set; }
         public Booking Booking { get; set; }
 
-        public int PackageId { get; set; }
-
-        public Package package { get; set; }
+        public Guid PackageId { get; set; }
+        //jlbg
+        public Package Package { get; set; }
     }
 }

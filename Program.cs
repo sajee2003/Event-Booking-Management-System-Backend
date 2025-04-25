@@ -24,8 +24,19 @@ namespace EventBookingManagementSystem_Backend
 
 
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            
+            //add-scoped-repositories
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IPackage_ItemRepository, Package_ItemRepository>();
+            builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+            builder.Services.AddScoped<IBooking_PackageRepository, Booking_PackageRepository>();
+
+            //add-scoped-services               
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IPackage_ItemService, Package_ItemService>();
+            builder.Services.AddScoped<IBookingService, BookingService>();
+            builder.Services.AddScoped<IBooking_PackageService, Booking_PackageService>();
+
 
             var app = builder.Build();
 

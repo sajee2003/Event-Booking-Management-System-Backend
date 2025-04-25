@@ -23,7 +23,7 @@ namespace EventBookingManagementSystem_Backend.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
             var user = await _service.GetUserByIdAsync(id);
             if (user == null) return NotFound();
@@ -46,7 +46,8 @@ namespace EventBookingManagementSystem_Backend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
+
         {
             var result = await _service.DeleteUserAsync(id);
             return result ? NoContent() : NotFound();
