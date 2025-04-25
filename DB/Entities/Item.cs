@@ -20,5 +20,14 @@
         public ICollection<Package_Item> Package_Items { get; set; }
 
         public ICollection<Booking_Package_Item> Booking_Package_Items { get; set; }
+
+
+        //public List<Asset_Item> Asset_Items { get; set; }
+
+        //public List<Item_Price> Item_Prices { get; set; }
+
+        //public List<Package_Item> Package_Items { get; set; }
+
+        //public List<Booking_Package_Item> Booking_Package_Items { get; set; }
     }
 }
