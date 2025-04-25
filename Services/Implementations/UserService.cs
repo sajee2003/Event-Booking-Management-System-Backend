@@ -20,7 +20,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
             var users = await _repository.GetAllAsync();
             return users.Select(u => new UserResponse
             {
-                UserId = u.UserId,
+                UserId = u.Id,
                 FirstName = u.FirstName,
                 LastName = u.LastName,
                 Email = u.Email,
@@ -37,7 +37,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
 
             return new UserResponse
             {
-                UserId = u.UserId,
+                UserId = u.Id,
                 FirstName = u.FirstName,
                 LastName = u.LastName,
                 Email = u.Email,
@@ -56,7 +56,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
                 Email = dto.Email,
                 Phone = dto.Phone,
                 Address = dto.Address,
-                UserId = new Guid()
+                Id = new Guid()
 
             };
 
@@ -64,7 +64,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
 
             return new UserResponse
             {
-                UserId = created.UserId,
+                UserId = created.Id,
                 FirstName = created.FirstName,
                 LastName = created.LastName,
                 Email = created.Email,
@@ -83,7 +83,7 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
             {
                 var user = new User
                 {
-                    UserId = id,
+                    Id = id,
                     FirstName = dto.FirstName,
                     LastName = dto.LastName,
                     Email = dto.Email,

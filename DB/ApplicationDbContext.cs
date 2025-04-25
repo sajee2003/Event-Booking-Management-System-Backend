@@ -13,5 +13,7 @@ namespace EventBookingManagementSystem_Backend.DB
         }
         
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Package> Packages { get; set; }
     }
 }
