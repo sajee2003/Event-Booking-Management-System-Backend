@@ -11,11 +11,18 @@ namespace EventBookingManagementSystem_Backend.Repositories.Implementations
         public BookingPackageItemRepository(ApplicationDbContext context) => _context = context;
 
         public async Task<IEnumerable<Booking_Package_Item>> GetAllAsync() =>
-            await _context.Booking_Package_Items.ToListAsync();
+            await _context.Booking_Package_Items
+            .Include(u => u.BookingPackage)
+            .Include(u => u.Item)
+            .ToListAsync();
 
-        public async Task<Booking_Package_Item> GetByIdAsync(Guid id) =>
-            await _context.Booking_Package_Items.FindAsync(id);
+        public async Task<Booking_Package_Item> GetByIdAsync(Guid id) { 
+           return await _context.Booking_Package_Items.
+                Include(u => u.BookingPackage).
+            Include(u => u.Item).FirstOrDefaultAsync(u =>u.Id == id);
 
+
+        }
         public async Task AddAsync(Booking_Package_Item entity)
         {
             _context.Booking_Package_Items.Add(entity);
@@ -39,6 +46,7 @@ namespace EventBookingManagementSystem_Backend.Repositories.Implementations
         }
 
         public async Task<Booking_Package_Item> GetByCompositeKeyAsync(Guid bookingPackageId, Guid itemId) 
-        { return await _context.Booking_Package_Items.FirstOrDefaultAsync(x => x.BookingPackageId == bookingPackageId && x.ItemId == itemId); }
+        { return await _context.Booking_Package_Items.
+                FirstOrDefaultAsync(x => x.BookingPackageId == bookingPackageId && x.ItemId == itemId); }
     }
 }

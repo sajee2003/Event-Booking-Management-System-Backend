@@ -15,13 +15,20 @@ namespace EventBookingManagementSystem_Backend.Repositories.Implementations
         }
 
         public async Task<IEnumerable<Booking_Asset>> GetAllAsync() =>
-        await _context.Booking_Assets.ToListAsync();
+        await _context.Booking_Assets
+            .Include(ba => ba.Booking)
+            .Include(ba => ba.Asset)
+            .ToListAsync();
 
         public async Task<Booking_Asset> GetByIdAsync(Guid id) =>
-        await _context.Booking_Assets.FindAsync(id);
+        await _context.Booking_Assets
+            .Include(ba => ba.Booking)
+            .Include(ba => ba.Asset).FirstOrDefaultAsync(ba => ba.Id == id);
 
         public async Task<IEnumerable<Booking_Asset>> GetByBookingIdAsync(Guid bookingId) =>
             await _context.Booking_Assets
+            .Include(ba => ba.Booking)
+            .Include(ba => ba.Asset)
                 .Where(b => b.BookingId == bookingId)
         .ToListAsync();
 

@@ -79,6 +79,14 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
             await _repository.UpdateAsync(existingEntity);
         }
 
-        public async Task DeleteAsync(Guid id) => await _repository.DeleteAsync(id);
+        public async Task DeleteAsync(Guid id)
+        {
+            var entity = await _repository.GetByIdAsync(id);
+            if (entity == null)
+                throw new KeyNotFoundException($"Entity with ID {id} not found.");
+
+            await _repository.DeleteAsync(id);
+        }
+
     }
 }
