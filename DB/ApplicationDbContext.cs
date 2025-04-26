@@ -22,6 +22,9 @@ namespace EventBookingManagementSystem_Backend.DB
 
         public DbSet<Item_Price> ItemPrices { get; set; }
 
+
+        public DbSet<Asset> Assets { get; set; }
+
         public DbSet<Invoice> Invoices { get; set; }
 
         public DbSet<Item_Category> Item_Categories { get; set; }
