@@ -14,5 +14,10 @@
         public string status { get; set; }
         public decimal amount { get; set; }
 
+
+        public ICollection<Invoice> Invoices { get; set; }
+
+
+
     }
 }
