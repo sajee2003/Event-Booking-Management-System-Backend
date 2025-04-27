@@ -72,5 +72,10 @@ namespace EventBookingManagementSystem_Backend.Repositories.Implementations
             await applicationDbContext.SaveChangesAsync();
             return true;
         }
+
+        // anything exists in the id
+        public async Task<bool> ExistsAsync(Guid id) { 
+            return await applicationDbContext.Booking_Packages.AnyAsync(p => p.Id == id);
+        }
     }
 }
