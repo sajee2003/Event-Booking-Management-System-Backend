@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EventBookingManagementSystem_Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class Check3M : Migration
+    public partial class dgns : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Asset",
+                name: "Assets",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -22,7 +22,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Asset", x => x.Id);
+                    table.PrimaryKey("PK_Assets", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -112,7 +112,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Asset_Item",
+                name: "Asset_Items",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -121,15 +121,15 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Asset_Item", x => x.Id);
+                    table.PrimaryKey("PK_Asset_Items", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Asset_Item_Asset_AssetId",
+                        name: "FK_Asset_Items_Assets_AssetId",
                         column: x => x.AssetId,
-                        principalTable: "Asset",
+                        principalTable: "Assets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Asset_Item_Items_ItemId",
+                        name: "FK_Asset_Items_Items_ItemId",
                         column: x => x.ItemId,
                         principalTable: "Items",
                         principalColumn: "Id",
@@ -154,9 +154,9 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 {
                     table.PrimaryKey("PK_ItemPrices", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_ItemPrices_Asset_assetId",
+                        name: "FK_ItemPrices_Assets_assetId",
                         column: x => x.assetId,
-                        principalTable: "Asset",
+                        principalTable: "Assets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -180,9 +180,9 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 {
                     table.PrimaryKey("PK_Package_Items", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Package_Items_Asset_AssetId",
+                        name: "FK_Package_Items_Assets_AssetId",
                         column: x => x.AssetId,
-                        principalTable: "Asset",
+                        principalTable: "Assets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -213,9 +213,9 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 {
                     table.PrimaryKey("PK_Booking_Assets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Booking_Assets_Asset_AssetId",
+                        name: "FK_Booking_Assets_Assets_AssetId",
                         column: x => x.AssetId,
-                        principalTable: "Asset",
+                        principalTable: "Assets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -275,6 +275,29 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BookingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    payment_date = table.Column<DateOnly>(type: "date", nullable: false),
+                    payment_method = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    transaction_reference = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Payments_Bookings_BookingId",
+                        column: x => x.BookingId,
+                        principalTable: "Bookings",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Booking_Package_Items",
                 columns: table => new
                 {
@@ -300,13 +323,13 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Asset_Item_AssetId",
-                table: "Asset_Item",
+                name: "IX_Asset_Items_AssetId",
+                table: "Asset_Items",
                 column: "AssetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Asset_Item_ItemId",
-                table: "Asset_Item",
+                name: "IX_Asset_Items_ItemId",
+                table: "Asset_Items",
                 column: "ItemId");
 
             migrationBuilder.CreateIndex(
@@ -378,13 +401,18 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 name: "IX_Package_Items_PackageId",
                 table: "Package_Items",
                 column: "PackageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payments_BookingId",
+                table: "Payments",
+                column: "BookingId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Asset_Item");
+                name: "Asset_Items");
 
             migrationBuilder.DropTable(
                 name: "Booking_Assets");
@@ -402,10 +430,13 @@ namespace EventBookingManagementSystem_Backend.Migrations
                 name: "Package_Items");
 
             migrationBuilder.DropTable(
+                name: "Payments");
+
+            migrationBuilder.DropTable(
                 name: "Booking_Packages");
 
             migrationBuilder.DropTable(
-                name: "Asset");
+                name: "Assets");
 
             migrationBuilder.DropTable(
                 name: "Items");

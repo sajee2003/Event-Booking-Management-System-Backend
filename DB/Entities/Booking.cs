@@ -16,6 +16,7 @@
 
 
         public ICollection<Invoice> Invoices { get; set; }
+        public ICollection<Payment> Payments { get; set; }
 
 
 

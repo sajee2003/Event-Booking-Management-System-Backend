@@ -1,5 +1,6 @@
 ﻿using EventBookingManagementSystem_Backend.DB.Entities;
 using EventBookingManagementSystem_Backend.DTOs.CommonModules;
+using EventBookingManagementSystem_Backend.DTOs.RequestModels;
 using EventBookingManagementSystem_Backend.Repositories.Interfaces;
 using EventBookingManagementSystem_Backend.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -59,9 +60,18 @@ namespace EventBookingManagementSystem_Backend.Services.Implementations
                 Description = updated.Description
             };
         }
-        public async Task CreateAssetAsync(Asset asset)
+        public async Task<Asset> CreateAssetAsync(AssetRequest assetDto)
         {
-            await _assetRepository.AddAsync(asset);
+            var asset = new Asset
+            {
+                Id = Guid.NewGuid(),
+                Name = assetDto.Name,
+                Description = assetDto.Description,
+                AssetStatus = assetDto.AssetStatus
+          
+            };
+
+            return await _assetRepository.CreateAssetAsync(asset);
         }
 
         public async Task<bool> DeleteAsset(Guid id)

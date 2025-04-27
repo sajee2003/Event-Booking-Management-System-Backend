@@ -28,7 +28,7 @@ namespace EventBookingManagementSystem_Backend.Repositories.Implementations
         public async Task<Asset> GetByIdAsync(Guid id) =>
                 await applicationDbContext.Assets.FindAsync(id);
 
-        public async Task<Asset> AddAsync(Asset asset)
+        public async Task<Asset> CreateAssetAsync(Asset asset)
         {
             applicationDbContext.Assets.Add(asset);
             await applicationDbContext.SaveChangesAsync();

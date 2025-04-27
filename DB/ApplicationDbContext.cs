@@ -26,6 +26,8 @@ namespace EventBookingManagementSystem_Backend.DB
         public DbSet<Item> Items { get; set; }
         public DbSet<Booking_Package_Item> Booking_Package_Items { get; set; }
 
+        public DbSet<Payment> Payments { get; set; }
+
 
 
 

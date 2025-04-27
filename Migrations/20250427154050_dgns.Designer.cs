@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventBookingManagementSystem_Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250425203948_janus")]
-    partial class janus
+    [Migration("20250427154050_dgns")]
+    partial class dgns
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,7 +65,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("Asset_Item");
+                    b.ToTable("Asset_Items");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Booking", b =>
@@ -124,7 +124,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasIndex("BookingId");
 
-                    b.ToTable("Booking_Asset");
+                    b.ToTable("Booking_Assets");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Booking_Package", b =>
@@ -166,7 +166,38 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("Booking_Package_Item");
+                    b.ToTable("Booking_Package_Items");
+                });
+
+            modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Invoice", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BookingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Invoice_No")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("date")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly>("due_date")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("total_amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingId");
+
+                    b.ToTable("Invoices");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Item", b =>
@@ -190,7 +221,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasIndex("ItemCategoryId");
 
-                    b.ToTable("Item");
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Item_Category", b =>
@@ -209,7 +240,7 @@ namespace EventBookingManagementSystem_Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Item_Category");
+                    b.ToTable("Item_Categories");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Item_Price", b =>
@@ -299,6 +330,40 @@ namespace EventBookingManagementSystem_Backend.Migrations
                     b.HasIndex("PackageId");
 
                     b.ToTable("Package_Items");
+                });
+
+            modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Payment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BookingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateOnly>("payment_date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("payment_method")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("transaction_reference")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingId");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.User", b =>
@@ -419,6 +484,17 @@ namespace EventBookingManagementSystem_Backend.Migrations
                     b.Navigation("Item");
                 });
 
+            modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Invoice", b =>
+                {
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Booking", "Booking")
+                        .WithMany("Invoices")
+                        .HasForeignKey("BookingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Booking");
+                });
+
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Item", b =>
                 {
                     b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Item_Category", "ItemCategory")
@@ -476,6 +552,17 @@ namespace EventBookingManagementSystem_Backend.Migrations
                     b.Navigation("Package");
                 });
 
+            modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Payment", b =>
+                {
+                    b.HasOne("EventBookingManagementSystem_Backend.DB.Entities.Booking", "Booking")
+                        .WithMany("Payments")
+                        .HasForeignKey("BookingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Booking");
+                });
+
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Asset", b =>
                 {
                     b.Navigation("Asset_Items");
@@ -485,6 +572,13 @@ namespace EventBookingManagementSystem_Backend.Migrations
                     b.Navigation("Item_Prices");
 
                     b.Navigation("Package_Items");
+                });
+
+            modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Booking", b =>
+                {
+                    b.Navigation("Invoices");
+
+                    b.Navigation("Payments");
                 });
 
             modelBuilder.Entity("EventBookingManagementSystem_Backend.DB.Entities.Item", b =>
