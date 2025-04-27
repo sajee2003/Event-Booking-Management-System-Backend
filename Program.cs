@@ -92,6 +92,10 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddScoped<IBookingPackageItemRepository,BookingPackageItemRepository >();
             builder.Services.AddScoped<IBookingPackageItemService,BookingPackageItemService>();
 
+            builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+            builder.Services.AddScoped<IPaymentService, PaymentService>();
+
+
             builder.Services.AddAutoMapper(typeof(BookingAssetProfile));
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

@@ -1,5 +1,7 @@
 ﻿using EventBookingManagementSystem_Backend.DB.Entities;
 using EventBookingManagementSystem_Backend.DTOs.CommonModules;
+using EventBookingManagementSystem_Backend.DTOs.RequestModels;
+using EventBookingManagementSystem_Backend.Services.Implementations;
 using EventBookingManagementSystem_Backend.Services.Interfaces;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -34,11 +36,18 @@ namespace EventBookingManagementSystem_Backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Asset asset)
+        public async Task<IActionResult> CreateAsset([FromBody] AssetRequest assetDto)
         {
-            await assetService.CreateAssetAsync(asset);
-            return Ok(asset);
+            if (assetDto == null)
+            {
+                return BadRequest("Asset data is null.");
+            }
+
+            var newAsset = await assetService.CreateAssetAsync(assetDto);
+
+            return Ok( newAsset);
         }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, AssetDTO asset)
