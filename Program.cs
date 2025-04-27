@@ -58,6 +58,7 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddScoped<IBooking_PackageRepository, Booking_PackageRepository>();
             builder.Services.AddScoped<IAssetRepository, AssetRepository>();
             builder.Services.AddScoped<IItem_PriceRepository, ItemPriceRepository>();
+            builder.Services.AddScoped<IAsset_ItemRepository, Asset_ItemRepository>();
 
             
            
@@ -71,6 +72,7 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddScoped<IPackageService, PackageService>();
             builder.Services.AddScoped<IAssetService, AssetService>();
             builder.Services.AddScoped<IItem_PriceService, Item_PriceService>();
+            builder.Services.AddScoped<IAsset_ItemService, Asset_ItemService>();   
 
 
             builder.Services.AddScoped<IBookingAssetRepository, BookingAssetRepository>();
