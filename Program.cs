@@ -40,6 +40,17 @@ namespace EventBookingManagementSystem_Backend
             builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -52,6 +63,9 @@ namespace EventBookingManagementSystem_Backend
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
+            // Use CORS
+            app.UseCors();
 
 
             app.MapControllers();
