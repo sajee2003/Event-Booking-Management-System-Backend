@@ -98,6 +98,18 @@ namespace EventBookingManagementSystem_Backend
 
             builder.Services.AddAutoMapper(typeof(BookingAssetProfile));
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+          
+          
+             builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
+          
 
             builder.Services.AddControllers()
 .AddJsonOptions(options =>
@@ -121,6 +133,9 @@ namespace EventBookingManagementSystem_Backend
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
+            // Use CORS
+            app.UseCors();
 
 
             app.MapControllers();
